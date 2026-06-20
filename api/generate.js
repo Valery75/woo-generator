@@ -53,7 +53,7 @@ export default async function handler(req, res) {
     });
 
     const data = await r.json();
-    if (data.error) return res.status(500).json({ error: data.error.message });
+    if (data.error) return res.status(500).json({ error: data.error.message, type: data.error.type, full: JSON.stringify(data.error) });
 
     const text = data.content?.find(b => b.type === 'text')?.text || '';
 
